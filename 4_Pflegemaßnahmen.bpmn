@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_1v9ypu0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="17.7.1">
+  <bpmn:collaboration id="Collaboration_027krhm">
+    <bpmn:participant id="Participant_1syumgn" name="Planung der Pflegemaßnahmen" processRef="Process_08ry7ac" />
+    <bpmn:participant id="Participant_1utmesz" name="Betroffene Person" />
+    <bpmn:messageFlow id="Flow_02hk6sc" sourceRef="Participant_1utmesz" targetRef="Activity_1vfklhm" />
+    <bpmn:textAnnotation id="TextAnnotation_0v63zbh">
+      <bpmn:text>Kurz und präzise.
+Formulierungshilfen bieten die Frageworte Wer?, Was?, Wie?, Wann?, Wo?, Wie oft?, Womit?</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0vj7pi7">
+      <bpmn:text>Verbindliche Verordnung für alle an der Pflege beteiligten Personen.
+Umfasst:
+* Pflegeprobleme
+* Ressourcen
+* Pflegeziele
+* Pflegemaßnahmen</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1fvj6zd" associationDirection="None" sourceRef="DataObjectReference_1txtz8j" targetRef="TextAnnotation_0vj7pi7" />
+    <bpmn:association id="Association_1ggv38k" associationDirection="None" sourceRef="DataObjectReference_0do8zvk" targetRef="TextAnnotation_0v63zbh" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_08ry7ac" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_12i63yz">
+      <bpmn:lane id="Lane_1ipe9bk" name="Pflegeperson">
+        <bpmn:flowNodeRef>Event_1pnkq33</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1vfklhm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0olqwi4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_13tp9bn</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Event_1pnkq33" name="Start">
+      <bpmn:outgoing>Flow_0cl44uk</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Activity_1vfklhm" name="Geeignete Pflegemaß-nahmen auswählen">
+      <bpmn:incoming>Flow_0cl44uk</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dj5l1o</bpmn:outgoing>
+      <bpmn:property id="Property_0r8ns8x" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0a0s56i">
+        <bpmn:sourceRef>DataObjectReference_1hf8sy5</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0r8ns8x</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_1ksvtdl">
+        <bpmn:sourceRef>DataObjectReference_0mmsy7k</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0r8ns8x</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1ri0grd">
+        <bpmn:targetRef>DataObjectReference_0do8zvk</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:dataObjectReference id="DataObjectReference_1hf8sy5" name="Pflegephänomene" dataObjectRef="DataObject_1kjsdz2" />
+    <bpmn:dataObject id="DataObject_1kjsdz2" />
+    <bpmn:dataObjectReference id="DataObjectReference_0mmsy7k" name="Pflegeziele" dataObjectRef="DataObject_1h6oi9g" />
+    <bpmn:dataObject id="DataObject_1h6oi9g" />
+    <bpmn:task id="Activity_0olqwi4" name="Pflegeplan ergänzen">
+      <bpmn:incoming>Flow_0dj5l1o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0a1rm2v</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1cdaf9w">
+        <bpmn:targetRef>DataObjectReference_1txtz8j</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:dataObjectReference id="DataObjectReference_1txtz8j" name="Pflegeverordnung /&#10;Pflegeplan" dataObjectRef="DataObject_0dzmr64" />
+    <bpmn:dataObject id="DataObject_0dzmr64" />
+    <bpmn:dataObjectReference id="DataObjectReference_0do8zvk" name="Pflegemaßnahmen" dataObjectRef="DataObject_1ri00bu" />
+    <bpmn:dataObject id="DataObject_1ri00bu" />
+    <bpmn:endEvent id="Event_13tp9bn" name="Ende">
+      <bpmn:incoming>Flow_0a1rm2v</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0cl44uk" sourceRef="Event_1pnkq33" targetRef="Activity_1vfklhm" />
+    <bpmn:sequenceFlow id="Flow_0dj5l1o" sourceRef="Activity_1vfklhm" targetRef="Activity_0olqwi4" />
+    <bpmn:sequenceFlow id="Flow_0a1rm2v" sourceRef="Activity_0olqwi4" targetRef="Event_13tp9bn" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_027krhm">
+      <bpmndi:BPMNShape id="Participant_1syumgn_di" bpmnElement="Participant_1syumgn" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="720" height="350" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1ipe9bk_di" bpmnElement="Lane_1ipe9bk" isHorizontal="true">
+        <dc:Bounds x="220" y="80" width="690" height="350" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1pnkq33_di" bpmnElement="Event_1pnkq33">
+        <dc:Bounds x="262" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="268" y="235" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1vfklhm_di" bpmnElement="Activity_1vfklhm">
+        <dc:Bounds x="420" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1hf8sy5_di" bpmnElement="DataObjectReference_1hf8sy5">
+        <dc:Bounds x="352" y="95" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="326" y="152" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0mmsy7k_di" bpmnElement="DataObjectReference_0mmsy7k">
+        <dc:Bounds x="552" y="95" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="543" y="152" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0olqwi4_di" bpmnElement="Activity_0olqwi4">
+        <dc:Bounds x="620" y="170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1txtz8j_di" bpmnElement="DataObjectReference_1txtz8j">
+        <dc:Bounds x="652" y="295" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="626" y="352" width="88" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0do8zvk_di" bpmnElement="DataObjectReference_0do8zvk">
+        <dc:Bounds x="452" y="285" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="428" y="336" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13tp9bn_di" bpmnElement="Event_13tp9bn">
+        <dc:Bounds x="812" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="817" y="235" width="26" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1fvj6zd_di" bpmnElement="Association_1fvj6zd">
+        <di:waypoint x="688" y="333" />
+        <di:waypoint x="849" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cl44uk_di" bpmnElement="Flow_0cl44uk">
+        <di:waypoint x="298" y="210" />
+        <di:waypoint x="420" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dj5l1o_di" bpmnElement="Flow_0dj5l1o">
+        <di:waypoint x="520" y="210" />
+        <di:waypoint x="620" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0a1rm2v_di" bpmnElement="Flow_0a1rm2v">
+        <di:waypoint x="720" y="210" />
+        <di:waypoint x="812" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1utmesz_di" bpmnElement="Participant_1utmesz" isHorizontal="true" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <dc:Bounds x="300" y="540" width="400" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1ggv38k_di" bpmnElement="Association_1ggv38k">
+        <di:waypoint x="452" y="310" />
+        <di:waypoint x="420" y="310" />
+        <di:waypoint x="404" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02hk6sc_di" bpmnElement="Flow_02hk6sc">
+        <di:waypoint x="330" y="540" />
+        <di:waypoint x="330" y="240" />
+        <di:waypoint x="420" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_0a0s56i_di" bpmnElement="DataInputAssociation_0a0s56i">
+        <di:waypoint x="388" y="133" />
+        <di:waypoint x="441" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1ksvtdl_di" bpmnElement="DataInputAssociation_1ksvtdl">
+        <di:waypoint x="552" y="131" />
+        <di:waypoint x="487" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1ri0grd_di" bpmnElement="DataOutputAssociation_1ri0grd">
+        <di:waypoint x="471" y="250" />
+        <di:waypoint x="472" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1cdaf9w_di" bpmnElement="DataOutputAssociation_1cdaf9w">
+        <di:waypoint x="671" y="250" />
+        <di:waypoint x="672" y="295" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0vj7pi7_di" bpmnElement="TextAnnotation_0vj7pi7">
+        <dc:Bounds x="820" y="450" width="295" height="122" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0v63zbh_di" bpmnElement="TextAnnotation_0v63zbh">
+        <dc:Bounds x="352" y="440" width="236" height="70" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
