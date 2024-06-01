@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="sid-38422fae-e03e-43a3-bef4-bd33b32041b2" targetNamespace="http://bpmn.io/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="17.7.1">
+  <collaboration id="Collaboration_1giy3qd">
+    <participant id="Participant_0it4t9k" name="Pflegeziele festlegen" processRef="Process_1" />
+    <participant id="Participant_0dyx97r" name="Betroffene Person" />
+    <messageFlow id="Flow_1soihfv" sourceRef="Participant_0dyx97r" targetRef="Activity_07c7s7q" />
+    <textAnnotation id="TextAnnotation_04nxx8i">
+      <text>Gelungene Zielformulierung enthält:
+1. das wahrzunehmende Verhalten bzw. getätigte Aussagen
+2. den entsprechenden Messkriterien
+3. die Bedingungen
+4. den gesetzten Zeitrahmen</text>
+    </textAnnotation>
+    <textAnnotation id="TextAnnotation_1u5zxca">
+      <text>Für jedes ermittelte Problem wird ein Pflegeziel festgelegt.</text>
+    </textAnnotation>
+    <textAnnotation id="TextAnnotation_0dwkhjl">
+      <text>Die Literatur zu diesem Prozessschritt beschreibt vor allem die Eigenschaften der Pflegeziele und nicht deren Erstellung</text>
+    </textAnnotation>
+    <association id="Association_1lqnu1p" associationDirection="None" sourceRef="Participant_0it4t9k" targetRef="TextAnnotation_0dwkhjl" />
+    <association id="Association_0epf2d2" associationDirection="None" sourceRef="Event_1mhrzkf" targetRef="TextAnnotation_1u5zxca" />
+    <association id="Association_0f5cfaw" associationDirection="None" sourceRef="DataObjectReference_0nur8kb" targetRef="TextAnnotation_04nxx8i" />
+  </collaboration>
+  <process id="Process_1" isExecutable="false">
+    <laneSet id="LaneSet_09o4vv3">
+      <lane id="Lane_0lkc1ku" name="Pflegeperson">
+        <flowNodeRef>Activity_07c7s7q</flowNodeRef>
+        <flowNodeRef>Activity_0fj60v0</flowNodeRef>
+        <flowNodeRef>Event_1mhrzkf</flowNodeRef>
+        <flowNodeRef>Event_1svv2tx</flowNodeRef>
+      </lane>
+    </laneSet>
+    <task id="Activity_07c7s7q" name="Pflegeziel festlegen">
+      <incoming>Flow_1hwn0o5</incoming>
+      <outgoing>Flow_1gkrumz</outgoing>
+      <dataOutputAssociation id="DataOutputAssociation_0j7ptpa">
+        <targetRef>DataObjectReference_0nur8kb</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="Activity_0fj60v0" name="Pflegeziel in Pflegeplan aufnehmen">
+      <incoming>Flow_1gkrumz</incoming>
+      <outgoing>Flow_01ihqgn</outgoing>
+      <dataOutputAssociation id="DataOutputAssociation_06mydtr">
+        <targetRef>DataObjectReference_1b2tv8q</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <dataObjectReference id="DataObjectReference_1b2tv8q" name="Pflegeplan" dataObjectRef="DataObject_0dpil5t" />
+    <dataObject id="DataObject_0dpil5t" />
+    <startEvent id="Event_1mhrzkf" name="Pflegeproblem aus vorherigem Prozess">
+      <outgoing>Flow_1hwn0o5</outgoing>
+      <messageEventDefinition id="MessageEventDefinition_1uitqtb" />
+    </startEvent>
+    <endEvent id="Event_1svv2tx">
+      <incoming>Flow_01ihqgn</incoming>
+    </endEvent>
+    <dataObjectReference id="DataObjectReference_0nur8kb" name="Pflegeziel" dataObjectRef="DataObject_1lrjkbi" />
+    <dataObject id="DataObject_1lrjkbi" />
+    <sequenceFlow id="Flow_1hwn0o5" sourceRef="Event_1mhrzkf" targetRef="Activity_07c7s7q" />
+    <sequenceFlow id="Flow_1gkrumz" sourceRef="Activity_07c7s7q" targetRef="Activity_0fj60v0" />
+    <sequenceFlow id="Flow_01ihqgn" sourceRef="Activity_0fj60v0" targetRef="Event_1svv2tx" />
+  </process>
+  <bpmndi:BPMNDiagram id="BpmnDiagram_1">
+    <bpmndi:BPMNPlane id="BpmnPlane_1" bpmnElement="Collaboration_1giy3qd">
+      <bpmndi:BPMNShape id="Participant_0it4t9k_di" bpmnElement="Participant_0it4t9k" isHorizontal="true">
+        <omgdc:Bounds x="150" y="200" width="640" height="280" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0lkc1ku_di" bpmnElement="Lane_0lkc1ku" isHorizontal="true">
+        <omgdc:Bounds x="180" y="200" width="610" height="280" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07c7s7q_di" bpmnElement="Activity_07c7s7q">
+        <omgdc:Bounds x="380" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fj60v0_di" bpmnElement="Activity_0fj60v0">
+        <omgdc:Bounds x="570" y="370" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1b2tv8q_di" bpmnElement="DataObjectReference_1b2tv8q">
+        <omgdc:Bounds x="642" y="265" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="634" y="241" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1mhrzkf_di" bpmnElement="Event_1mhrzkf">
+        <omgdc:Bounds x="232" y="392" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="210" y="435" width="80" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1svv2tx_di" bpmnElement="Event_1svv2tx">
+        <omgdc:Bounds x="732" y="392" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0nur8kb_di" bpmnElement="DataObjectReference_0nur8kb">
+        <omgdc:Bounds x="412" y="255" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds x="406" y="231" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1hwn0o5_di" bpmnElement="Flow_1hwn0o5">
+        <omgdi:waypoint x="268" y="410" />
+        <omgdi:waypoint x="380" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1gkrumz_di" bpmnElement="Flow_1gkrumz">
+        <omgdi:waypoint x="480" y="410" />
+        <omgdi:waypoint x="570" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01ihqgn_di" bpmnElement="Flow_01ihqgn">
+        <omgdi:waypoint x="670" y="410" />
+        <omgdi:waypoint x="732" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_0dyx97r_di" bpmnElement="Participant_0dyx97r" isHorizontal="true" bioc:stroke="#205022" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#205022">
+        <omgdc:Bounds x="320" y="600" width="400" height="60" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0epf2d2_di" bpmnElement="Association_0epf2d2">
+        <omgdi:waypoint x="255" y="393" />
+        <omgdi:waypoint x="279" y="314" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1lqnu1p_di" bpmnElement="Association_1lqnu1p">
+        <omgdi:waypoint x="790" y="324" />
+        <omgdi:waypoint x="920" y="318" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0f5cfaw_di" bpmnElement="Association_0f5cfaw">
+        <omgdi:waypoint x="448" y="265" />
+        <omgdi:waypoint x="600" y="137" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1soihfv_di" bpmnElement="Flow_1soihfv">
+        <omgdi:waypoint x="440" y="600" />
+        <omgdi:waypoint x="440" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_06mydtr_di" bpmnElement="DataOutputAssociation_06mydtr">
+        <omgdi:waypoint x="633" y="370" />
+        <omgdi:waypoint x="651" y="315" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_1u5zxca_di" bpmnElement="TextAnnotation_1u5zxca">
+        <omgdc:Bounds x="250" y="230" width="100" height="84" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0j7ptpa_di" bpmnElement="DataOutputAssociation_0j7ptpa">
+        <omgdi:waypoint x="429" y="370" />
+        <omgdi:waypoint x="428" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0dwkhjl_di" bpmnElement="TextAnnotation_0dwkhjl">
+        <omgdc:Bounds x="920" y="300" width="190" height="100" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_04nxx8i_di" bpmnElement="TextAnnotation_04nxx8i">
+        <omgdc:Bounds x="600" y="80" width="410" height="97" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
