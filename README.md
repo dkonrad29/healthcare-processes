@@ -19,7 +19,7 @@ Die Dokumentation, Beispiele und eine Schnellstart-Anleitung zu BPMN befindet si
 Das paper https://www.sciencedirect.com/science/article/pii/S0306437922000217 beinhaltet einige best practives zur Modellierung von Pflegeprozessen mit BPMN (ab Seite 9)
 
 
-## Sources
+## Quellen
 The processes are based on the descriptions from the books below
 
 Hojdelewicz, B. (2021). Der Pflegeprozess: Prozesshafte Pflegebeziehung. Facultas.
